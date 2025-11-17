@@ -1,3 +1,8 @@
+#ifndef POINT_HPP
+#define POINT_HPP
+
+#include <iostream>
+
 template <typename T>
 class point
 {
@@ -5,18 +10,18 @@ private:
     T x;
     T y;
 public:
-    point(const T x,const T y) : x(0), y(0) {}
-    point(const point<T>&p)
+    point(const T x,const T y) : x(x), y(y) {}
+    point(const point<T>&p){}
     
     //-------- Méthodes --------
 
     // Accesseurs
-    T getx() {return x;}
-    T gety() {return y;}
+    T getx() const {return x;}
+    T gety() const {return y;}
 
     // Mutateurs
-    void setx(T new x) {x = new x;}
-    void sety(T new y) {y = new y;}
+    void setx(T x) {this->x = x;}
+    void sety(T y) {this->y = y;}
 
     //mutateurs direct dans translater
     void translater(T x,T y) {
@@ -25,9 +30,10 @@ public:
     }
 
     // Surchage operator
-    friend std::ostream& operator<< <T>(std::ostream &o, point const&) {
-        o<<"("<< point.x << "," << point.y ")";
+    friend std::ostream& operator<< (std::ostream &o, point <T>const& p) {
+        o<<"("<< p.getx() << ";" << p.gety() << ")";
         return o;
     }
 };
 
+#endif
